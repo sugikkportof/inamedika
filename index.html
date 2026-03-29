@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ina Medika Beauty Center | Klinik Kecantikan Premium Singaraja</title>
+    <title>Ina Medika Beauty Center | Premium Clinic Singaraja</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
     <script src="https://cdn.tailwindcss.com"></script>
     
     <script>
@@ -16,108 +15,119 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            50: '#fdf8f6',
-                            100: '#f2e8e5', // Soft background
-                            300: '#dcb0a6', // Soft rose gold
-                            500: '#c58376', // Primary rose gold
-                            700: '#9b5b4f', // Dark rose gold
-                            900: '#4a2f2a', // Deep elegant text
-                        }
+                        brand: { 50: '#fdf8f6', 100: '#f2e8e5', 300: '#dcb0a6', 500: '#c58376', 700: '#9b5b4f', 900: '#4a2f2a' }
                     },
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                    }
+                    fontFamily: { sans: ['Poppins', 'sans-serif'], serif: ['Playfair Display', 'serif'] }
                 }
             }
         }
     </script>
 
     <style>
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #fdf8f6; }
         ::-webkit-scrollbar-thumb { background: #dcb0a6; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #c58376; }
-
-        /* Reveal Animation Class (Dipicu oleh JS) */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s cubic-bezier(0.5, 0, 0, 1);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
         .delay-100 { transition-delay: 100ms; }
         .delay-200 { transition-delay: 200ms; }
-        .delay-300 { transition-delay: 300ms; }
-
-        /* Image Hover Zoom */
-        .img-zoom {
-            transition: transform 0.7s ease;
-        }
-        .group:hover .img-zoom {
-            transform: scale(1.05);
-        }
+        .gallery-item { transition: all 0.5s ease; }
+        .hide-item { opacity: 0; transform: scale(0.9); pointer-events: none; position: absolute; }
     </style>
 </head>
-<body class="font-sans text-brand-900 bg-brand-50 antialiased selection:bg-brand-300 selection:text-white">
+<body class="font-sans text-brand-900 bg-brand-50 antialiased">
 
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 bg-transparent py-4 px-6 md:px-12">
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 bg-white/90 backdrop-blur-md shadow-sm py-4 px-6 md:px-12">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <a href="#" class="flex items-center gap-3">
-                <img src="https://i.postimg.cc/15R5MMM0/IMG-20260329-WA0007.jpg" alt="Ina Medika Logo" class="h-12 w-auto rounded-full shadow-md border-2 border-white">
-                <span class="font-serif font-bold text-xl tracking-wide text-brand-900 drop-shadow-sm hidden md:block">INA MEDIKA</span>
+                <img src="https://i.postimg.cc/15R5MMM0/IMG-20260329-WA0007.jpg" alt="Logo" class="h-10 md:h-12 w-auto rounded-full shadow-sm border border-brand-100">
+                <span class="font-serif font-bold text-lg md:text-xl text-brand-900 hidden md:block" data-en="INA MEDIKA">INA MEDIKA</span>
             </a>
             
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#home" class="text-sm font-medium hover:text-brand-500 transition">Beranda</a>
-                <a href="#layanan" class="text-sm font-medium hover:text-brand-500 transition">Layanan</a>
-                <a href="#tentang" class="text-sm font-medium hover:text-brand-500 transition">Tentang</a>
-                <a href="#kontak" class="text-sm font-medium hover:text-brand-500 transition">Kontak</a>
-                <a href="https://wa.me/6287813851999" target="_blank" class="px-6 py-2.5 bg-brand-500 text-white text-sm font-medium rounded-full hover:bg-brand-700 transition shadow-lg shadow-brand-500/30">
-                    Konsultasi Gratis
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#home" class="text-sm font-medium hover:text-brand-500 transition lang-text" data-en="Home">Beranda</a>
+                <a href="#why-us" class="text-sm font-medium hover:text-brand-500 transition lang-text" data-en="Why Us">Keunggulan</a>
+                <a href="#layanan" class="text-sm font-medium hover:text-brand-500 transition lang-text" data-en="Services">Layanan</a>
+                <a href="#filosofi" class="text-sm font-medium hover:text-brand-500 transition lang-text" data-en="About">Tentang</a>
+                <a href="#galeri" class="text-sm font-medium hover:text-brand-500 transition lang-text" data-en="Gallery">Galeri</a>
+                
+                <div class="flex items-center gap-2 text-sm ml-4 border-l border-brand-300 pl-4">
+                    <button id="lang-id" class="font-bold text-brand-900">ID</button>
+                    <span class="text-gray-300">|</span>
+                    <button id="lang-en" class="font-medium text-gray-400 hover:text-brand-500">EN</button>
+                </div>
+
+                <a href="#reservasi" class="px-5 py-2 bg-brand-500 text-white text-sm font-medium rounded-full hover:bg-brand-700 transition lang-text" data-en="Book Now">
+                    Reservasi
                 </a>
             </div>
-
-            <button id="mobile-menu-btn" class="md:hidden text-brand-900 focus:outline-none">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-            </button>
         </div>
     </nav>
 
-    <div id="mobile-menu" class="fixed inset-0 bg-white/95 backdrop-blur-md z-40 hidden flex-col items-center justify-center space-y-8 opacity-0 transition-opacity duration-300">
-        <a href="#home" class="mobile-link text-2xl font-serif text-brand-900">Beranda</a>
-        <a href="#layanan" class="mobile-link text-2xl font-serif text-brand-900">Layanan</a>
-        <a href="#tentang" class="mobile-link text-2xl font-serif text-brand-900">Tentang</a>
-        <a href="#kontak" class="mobile-link text-2xl font-serif text-brand-900">Kontak</a>
-    </div>
-
     <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="https://i.postimg.cc/tCkpxyNc/IMG-20260329-WA0003.jpg" alt="Ina Medika Clinic" class="w-full h-full object-cover object-center scale-105 animate-[pulse_20s_ease-in-out_infinite_alternate]">
-            <div class="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-transparent"></div>
+            <img src="https://i.postimg.cc/tCkpxyNc/IMG-20260329-WA0003.jpg" alt="Clinic" class="w-full h-full object-cover scale-105 animate-[pulse_20s_ease-in-out_infinite_alternate]">
+            <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-white/30"></div>
         </div>
-
-        <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full flex flex-col items-start pt-20">
-            <span class="reveal inline-block py-1 px-3 rounded-full bg-brand-100 text-brand-700 text-xs font-semibold tracking-widest uppercase mb-4 border border-brand-300">Beauty Center Singaraja</span>
-            <h1 class="reveal delay-100 font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-brand-900 leading-tight max-w-2xl mb-6">
+        <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full pt-20">
+            <span class="reveal inline-block py-1 px-3 rounded-full bg-brand-100 text-brand-700 text-xs font-semibold tracking-widest uppercase mb-4 border border-brand-300 lang-text" data-en="Premium Beauty Center">Beauty Center Premium</span>
+            <h1 class="reveal delay-100 font-serif text-4xl md:text-6xl font-bold text-brand-900 leading-tight max-w-2xl mb-6 lang-text" data-en="Radiate Your Natural Beauty Every Day.">
                 Pancarkan Cantik <span class="italic text-brand-500">Naturalmu</span> Setiap Hari.
             </h1>
-            <p class="reveal delay-200 text-gray-600 md:text-lg max-w-lg mb-8 leading-relaxed">
+            <p class="reveal delay-200 text-gray-600 md:text-lg max-w-lg mb-8 lang-text" data-en="Modern aesthetic treatments with the latest technology handled by medical professionals.">
                 Perawatan estetika modern dengan teknologi terkini dan ditangani oleh profesional medis berpengalaman di Singaraja.
             </p>
-            <div class="reveal delay-300 flex flex-col sm:flex-row gap-4">
-                <a href="https://wa.me/6287813851999" target="_blank" class="px-8 py-4 bg-brand-900 text-white rounded-full hover:bg-brand-700 transition shadow-xl flex items-center justify-center gap-2">
-                    <span>Reservasi Sekarang</span>
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                </a>
-                <a href="#layanan" class="px-8 py-4 bg-white text-brand-900 border border-brand-300 rounded-full hover:bg-brand-50 transition flex items-center justify-center">
-                    Lihat Perawatan
-                </a>
+            <div class="reveal delay-300 flex gap-4">
+                <a href="#reservasi" class="px-8 py-4 bg-brand-900 text-white rounded-full hover:bg-brand-700 transition shadow-xl lang-text" data-en="Book Appointment">Reservasi Sekarang</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-white border-b border-brand-100">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-brand-100">
+                <div class="reveal">
+                    <h3 class="text-4xl md:text-5xl font-serif font-bold text-brand-500 mb-2"><span class="counter" data-target="250">0</span>+</h3>
+                    <p class="text-sm text-gray-500 font-medium uppercase tracking-wide lang-text" data-en="Patient Reviews">Ulasan Pasien</p>
+                </div>
+                <div class="reveal delay-100">
+                    <h3 class="text-4xl md:text-5xl font-serif font-bold text-brand-500 mb-2"><span class="counter" data-target="5">0</span>+</h3>
+                    <p class="text-sm text-gray-500 font-medium uppercase tracking-wide lang-text" data-en="Expert Doctors">Dokter Ahli</p>
+                </div>
+                <div class="reveal delay-200">
+                    <h3 class="text-4xl md:text-5xl font-serif font-bold text-brand-500 mb-2"><span class="counter-float" data-target="4.9">0</span><span class="text-2xl text-yellow-400">★</span></h3>
+                    <p class="text-sm text-gray-500 font-medium uppercase tracking-wide lang-text" data-en="Google Rating">Rating Google</p>
+                </div>
+                <div class="reveal delay-300">
+                    <h3 class="text-4xl md:text-5xl font-serif font-bold text-brand-500 mb-2"><span class="counter" data-target="98">0</span>%</h3>
+                    <p class="text-sm text-gray-500 font-medium uppercase tracking-wide lang-text" data-en="Client Satisfaction">Kepuasan Pelanggan</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us" class="py-24 bg-brand-50">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-brand-900 mb-4 lang-text" data-en="Why Choose Us?">Mengapa Memilih Kami?</h2>
+                <div class="h-1 w-16 bg-brand-500 mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-brand-100 reveal text-center hover:-translate-y-2 transition-transform">
+                    <div class="w-16 h-16 mx-auto bg-brand-100 rounded-full flex items-center justify-center text-brand-700 text-3xl mb-6">🩺</div>
+                    <h3 class="font-serif text-xl font-bold mb-3 lang-text" data-en="Certified Doctors">Dokter Tersertifikasi</h3>
+                    <p class="text-gray-500 text-sm lang-text" data-en="Treatments are handled directly by aesthetic doctors.">Tindakan dilakukan langsung oleh dokter estetika yang tersertifikasi dan berpengalaman.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-brand-100 reveal delay-100 text-center hover:-translate-y-2 transition-transform">
+                    <div class="w-16 h-16 mx-auto bg-brand-100 rounded-full flex items-center justify-center text-brand-700 text-3xl mb-6">✨</div>
+                    <h3 class="font-serif text-xl font-bold mb-3 lang-text" data-en="Modern Technology">Teknologi Modern</h3>
+                    <p class="text-gray-500 text-sm lang-text" data-en="Using the latest, safe, and clinically tested aesthetic machines.">Menggunakan mesin dan alat estetika terbaru yang aman, higienis, dan teruji klinis.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-brand-100 reveal delay-200 text-center hover:-translate-y-2 transition-transform">
+                    <div class="w-16 h-16 mx-auto bg-brand-100 rounded-full flex items-center justify-center text-brand-700 text-3xl mb-6">🛋️</div>
+                    <h3 class="font-serif text-xl font-bold mb-3 lang-text" data-en="Comfortable Clinic">Klinik Super Nyaman</h3>
+                    <p class="text-gray-500 text-sm lang-text" data-en="A relaxing, fragrant, and highly hygienic clinic environment.">Suasana klinik yang rileks, wangi, dan mengutamakan standar kebersihan tingkat tinggi.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -125,89 +135,338 @@
     <section id="layanan" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6 md:px-12">
             <div class="text-center mb-16 reveal">
-                <h2 class="font-serif text-3xl md:text-5xl font-bold text-brand-900 mb-4">Layanan Signature Kami</h2>
-                <div class="h-1 w-20 bg-brand-500 mx-auto rounded-full"></div>
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-brand-900 mb-4 lang-text" data-en="Our Signature Services">Layanan Signature Kami</h2>
+                <div class="h-1 w-16 bg-brand-500 mx-auto rounded-full"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="group cursor-pointer reveal delay-100">
-                    <div class="overflow-hidden rounded-2xl mb-4 relative">
-                        <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&q=80&w=800" alt="Facial" class="w-full h-64 object-cover img-zoom">
-                        <div class="absolute inset-0 bg-brand-900/20 group-hover:bg-transparent transition duration-500"></div>
+                <div class="group bg-brand-50 rounded-2xl overflow-hidden reveal border border-brand-100 flex flex-col">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=800" class="w-full h-56 object-cover transition duration-700 group-hover:scale-110">
                     </div>
-                    <h3 class="font-serif text-xl font-bold mb-2 group-hover:text-brand-500 transition">Premium Facial Treatment</h3>
-                    <p class="text-sm text-gray-500 mb-3">Membersihkan, mencerahkan, dan meremajakan kulit wajah dengan serum pilihan.</p>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="font-serif text-xl font-bold mb-2">Premium Facial</h3>
+                        <p class="text-sm text-gray-500 mb-6 flex-grow lang-text" data-en="Deep cleansing, brightening, and rejuvenating with premium serums.">Membersihkan, mencerahkan, dan meremajakan kulit wajah dengan serum pilihan.</p>
+                        <button onclick="selectService('Premium Facial')" class="w-full py-3 border border-brand-500 text-brand-700 rounded-full font-medium hover:bg-brand-500 hover:text-white transition lang-text" data-en="Book This Service">Pilih Layanan Ini</button>
+                    </div>
                 </div>
-                <div class="group cursor-pointer reveal delay-200">
-                    <div class="overflow-hidden rounded-2xl mb-4 relative">
-                        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=800" alt="Anti Aging" class="w-full h-64 object-cover img-zoom">
-                        <div class="absolute inset-0 bg-brand-900/20 group-hover:bg-transparent transition duration-500"></div>
+                <div class="group bg-brand-50 rounded-2xl overflow-hidden reveal delay-100 border border-brand-100 flex flex-col">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800" class="w-full h-56 object-cover transition duration-700 group-hover:scale-110">
                     </div>
-                    <h3 class="font-serif text-xl font-bold mb-2 group-hover:text-brand-500 transition">Anti-Aging & Laser</h3>
-                    <p class="text-sm text-gray-500 mb-3">Teknologi laser modern untuk menyamarkan garis halus dan flek hitam.</p>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="font-serif text-xl font-bold mb-2">Anti-Aging & Laser</h3>
+                        <p class="text-sm text-gray-500 mb-6 flex-grow lang-text" data-en="Modern laser tech to reduce fine lines and dark spots.">Teknologi laser modern untuk menyamarkan garis halus dan flek hitam secara efektif.</p>
+                        <button onclick="selectService('Anti-Aging & Laser')" class="w-full py-3 border border-brand-500 text-brand-700 rounded-full font-medium hover:bg-brand-500 hover:text-white transition lang-text" data-en="Book This Service">Pilih Layanan Ini</button>
+                    </div>
                 </div>
-                <div class="group cursor-pointer reveal delay-300">
-                    <div class="overflow-hidden rounded-2xl mb-4 relative">
-                        <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=800" alt="Acne" class="w-full h-64 object-cover img-zoom">
-                        <div class="absolute inset-0 bg-brand-900/20 group-hover:bg-transparent transition duration-500"></div>
+                <div class="group bg-brand-50 rounded-2xl overflow-hidden reveal delay-200 border border-brand-100 flex flex-col">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=800" class="w-full h-56 object-cover transition duration-700 group-hover:scale-110">
                     </div>
-                    <h3 class="font-serif text-xl font-bold mb-2 group-hover:text-brand-500 transition">Acne Solution Center</h3>
-                    <p class="text-sm text-gray-500 mb-3">Perawatan intensif untuk mengatasi jerawat meradang dan bekas jerawat.</p>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="font-serif text-xl font-bold mb-2">Acne Solution</h3>
+                        <p class="text-sm text-gray-500 mb-6 flex-grow lang-text" data-en="Intensive care for inflamed acne and acne scars.">Perawatan intensif medis untuk mengatasi jerawat meradang dan bekas jerawat membandel.</p>
+                        <button onclick="selectService('Acne Solution')" class="w-full py-3 border border-brand-500 text-brand-700 rounded-full font-medium hover:bg-brand-500 hover:text-white transition lang-text" data-en="Book This Service">Pilih Layanan Ini</button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="kontak" class="py-24 bg-brand-100">
+    <section id="filosofi" class="py-24 bg-brand-900 text-white relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-12 items-center">
-            
             <div class="reveal">
-                <h2 class="font-serif text-3xl md:text-5xl font-bold text-brand-900 mb-6">Kunjungi Klinik Kami</h2>
-                <p class="text-gray-600 mb-8 leading-relaxed">
-                    Kami siap menyambut Anda di Ina Medika Beauty Center. Jadwalkan kedatangan Anda untuk konsultasi gratis dengan dokter estetika kami.
+                <span class="text-brand-300 text-sm font-semibold tracking-widest uppercase mb-2 block lang-text" data-en="Our Philosophy">Filosofi Kami</span>
+                <h2 class="font-serif text-3xl md:text-5xl font-bold mb-6 lang-text" data-en="Beauty is Health">Kecantikan adalah Kesehatan</h2>
+                <p class="text-gray-300 mb-6 leading-relaxed lang-text" data-en="At Ina Medika, we believe that true beauty comes from healthy skin. We do not just alter appearances, but restore your skin's health using safe, medical-standard methods.">
+                    Di Ina Medika, kami percaya bahwa kecantikan sejati bermula dari kulit yang sehat. Kami tidak sekadar mengubah penampilan, melainkan mengembalikan kesehatan kulit Anda dengan metode yang aman dan berstandar medis.
                 </p>
+                <img src="https://i.postimg.cc/15R5MMM0/IMG-20260329-WA0007.jpg" class="w-20 rounded-full opacity-80" alt="Logo">
+            </div>
+            <div class="reveal delay-100">
+                <img src="https://i.postimg.cc/15R5MMM0/IMG-20260329-WA0007.jpg" alt="Clinic Interior" class="rounded-2xl shadow-2xl w-full h-80 object-cover border-4 border-brand-700">
+            </div>
+        </div>
+    </section>
+
+    <section id="galeri" class="py-24 bg-brand-50">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="text-center mb-12 reveal">
+                <span class="text-brand-500 text-sm font-semibold tracking-widest uppercase mb-2 block lang-text" data-en="Visual Experience">Visual Experience</span>
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-brand-900 mb-8 lang-text" data-en="Explore Our Clinic">Jelajahi Sudut Ina Medika</h2>
                 
-                <div class="space-y-6">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md text-green-500">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/></svg>
-                        </div>
+                <div class="flex flex-wrap justify-center gap-4 mb-10">
+                    <button class="filter-btn active px-6 py-2 rounded-full border border-brand-500 bg-brand-500 text-white font-medium text-sm transition lang-text" data-filter="all" data-en="All Photos">Semua Foto</button>
+                    <button class="filter-btn px-6 py-2 rounded-full border border-gray-300 bg-white text-gray-600 hover:border-brand-500 hover:text-brand-500 font-medium text-sm transition lang-text" data-filter="fasilitas" data-en="Facility">Fasilitas</button>
+                    <button class="filter-btn px-6 py-2 rounded-full border border-gray-300 bg-white text-gray-600 hover:border-brand-500 hover:text-brand-500 font-medium text-sm transition lang-text" data-filter="treatment" data-en="Treatments">Treatment</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="gallery-grid">
+                <div class="gallery-item fasilitas rounded-2xl overflow-hidden shadow-sm h-64">
+                    <img src="https://i.postimg.cc/tCkpxyNc/IMG-20260329-WA0003.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="gallery-item treatment rounded-2xl overflow-hidden shadow-sm h-64">
+                    <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=600" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="gallery-item fasilitas rounded-2xl overflow-hidden shadow-sm h-64">
+                    <img src="https://i.postimg.cc/15R5MMM0/IMG-20260329-WA0007.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="gallery-item treatment rounded-2xl overflow-hidden shadow-sm h-64">
+                    <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=600" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-brand-900 mb-4 lang-text" data-en="What They Say">Apa Kata Mereka</h2>
+                <div class="h-1 w-16 bg-brand-500 mx-auto rounded-full mb-4"></div>
+                <p class="text-gray-500 lang-text" data-en="Real reviews from our Google Maps">Ulasan asli dari Google Maps Ina Beauty Center</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-brand-900 text-white p-8 rounded-3xl shadow-lg reveal">
+                    <div class="flex text-yellow-400 mb-4 text-xl">★★★★★</div>
+                    <p class="text-sm font-light italic mb-6 leading-relaxed">"Secara keseluruhan saya puas dan akan kembali untuk mencoba treatment lainnya. Cocok untuk yang mencari klinik bersih, pelayanan ramah, dan hasil yang terlihat. Highly recommended."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-brand-500 flex items-center justify-center font-bold">T</div>
                         <div>
-                            <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold">WhatsApp Admin</p>
-                            <a href="https://wa.me/6287813851999" target="_blank" class="text-lg font-bold text-brand-900 hover:text-brand-500">+62 878-1385-1999</a>
+                            <p class="text-sm font-bold">Tenita Yuli</p>
+                            <p class="text-xs text-brand-300">Local Guide</p>
                         </div>
                     </div>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md text-pink-500">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                        </div>
+                </div>
+                <div class="bg-brand-900 text-white p-8 rounded-3xl shadow-lg reveal delay-100">
+                    <div class="flex text-yellow-400 mb-4 text-xl">★★★★★</div>
+                    <p class="text-sm font-light italic mb-6 leading-relaxed">"Wajib bgt treatment disini, pelayanan super ramah, tempat wangi dan bersih .. harga juga terjangkau ❤️"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-brand-500 flex items-center justify-center font-bold">D</div>
                         <div>
-                            <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold">Instagram</p>
-                            <a href="https://instagram.com/inamedika_beautycentersgr" target="_blank" class="text-lg font-bold text-brand-900 hover:text-brand-500">@inamedika_beautycentersgr</a>
+                            <p class="text-sm font-bold">Deanisa Aprillia</p>
+                            <p class="text-xs text-brand-300">Google Review</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-brand-900 text-white p-8 rounded-3xl shadow-lg reveal delay-200">
+                    <div class="flex text-yellow-400 mb-4 text-xl">★★★★★</div>
+                    <p class="text-sm font-light italic mb-6 leading-relaxed">"Bakal rutin ksini...tempat nyaman, harga ramah dan dokternya smart"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-brand-500 flex items-center justify-center font-bold">L</div>
+                        <div>
+                            <p class="text-sm font-bold">Lim Tjeng Hwa</p>
+                            <p class="text-xs text-brand-300">Google Review</p>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="reveal delay-200 h-96 w-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
-                <iframe src="https://www.google.com/maps/embed?pb=!4v1774757158333!6m8!1m7!1s7Sao4LWU0km5SMP6eRptow!2m2!1d-8.113577824639908!2d115.0823425802946!3f146.86153940262864!4f-7.015973162261616!5f0.7820865974627469" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <section id="reservasi" class="py-24 bg-brand-100">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-12">
+            
+            <div class="bg-white p-8 md:p-10 rounded-3xl shadow-xl reveal">
+                <div class="flex items-center gap-2 mb-6 text-brand-500 font-semibold text-sm tracking-wide">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    <span class="lang-text" data-en="BOOK NOW">RESERVASI SEKARANG</span>
+                </div>
+                <h3 class="font-serif text-3xl font-bold text-brand-900 mb-8 lang-text" data-en="Schedule Your Visit">Jadwalkan Kunjungan</h3>
+                
+                <form id="waForm" class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2 lang-text" data-en="Full Name *">Nama Lengkap *</label>
+                        <input type="text" id="waName" required class="w-full px-4 py-3 bg-brand-50 border border-brand-100 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none transition">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2 lang-text" data-en="Select Treatment *">Pilihan Treatment *</label>
+                        <select id="waService" required class="w-full px-4 py-3 bg-brand-50 border border-brand-100 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none transition text-gray-700">
+                            <option value="">-- Pilih Layanan --</option>
+                            <option value="Premium Facial">Premium Facial</option>
+                            <option value="Anti-Aging & Laser">Anti-Aging & Laser</option>
+                            <option value="Acne Solution">Acne Solution</option>
+                            <option value="Konsultasi Dokter">Konsultasi Dokter Saja</option>
+                        </select>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2 lang-text" data-en="Date *">Tanggal *</label>
+                            <input type="date" id="waDate" required class="w-full px-4 py-3 bg-brand-50 border border-brand-100 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none transition text-gray-700">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2 lang-text" data-en="Time">Waktu</label>
+                            <input type="time" id="waTime" class="w-full px-4 py-3 bg-brand-50 border border-brand-100 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none transition text-gray-700">
+                        </div>
+                    </div>
+                    <button type="button" onclick="sendWA()" class="w-full py-4 bg-brand-500 hover:bg-brand-700 text-white font-bold rounded-xl shadow-lg transition flex justify-center items-center gap-2">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/></svg>
+                        <span class="lang-text" data-en="Send via WhatsApp">Kirim via WhatsApp</span>
+                    </button>
+                </form>
+            </div>
+
+            <div class="reveal delay-200 flex flex-col justify-center">
+                <h3 class="font-serif text-3xl font-bold text-brand-900 mb-4 lang-text" data-en="Location">Lokasi Klinik</h3>
+                <p class="text-gray-600 mb-6">Jl. A. Yani, Kaliuntu, Kec. Buleleng, Kabupaten Buleleng, Bali 81116</p>
+                <div class="h-80 w-full rounded-2xl overflow-hidden shadow-lg border-4 border-white">
+                    <iframe src="https://www.google.com/maps/embed?pb=!4v1774757158333!6m8!1m7!1s7Sao4LWU0km5SMP6eRptow!2m2!1d-8.113577824639908!2d115.0823425802946!3f146.86153940262864!4f-7.015973162261616!5f0.7820865974627469" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div>
 
         </div>
     </section>
 
-    <footer class="bg-brand-900 text-white py-12 text-center">
+    <footer class="bg-brand-900 text-white py-8 text-center">
         <div class="max-w-7xl mx-auto px-6">
-            <img src="https://i.postimg.cc/15R5MMM0/IMG-20260329-WA0007.jpg" alt="Ina Medika Logo" class="h-16 w-auto mx-auto mb-6 rounded-full border border-brand-500">
-            <p class="text-brand-300 text-sm mb-2">&copy; 2026 Ina Medika Beauty Center. All rights reserved.</p>
-            <p class="text-xs text-brand-700">Premium Website by YourAgency.</p>
+            <p class="text-brand-300 text-sm mb-1">© 2026 Ina Medika Beauty Center. All rights reserved.</p>
         </div>
     </footer>
 
-    <a href="https://wa.me/6287813851999" target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:bg-green-600 hover:scale-110 transition-transform duration-300 z-50 flex items-center justify-center animate-bounce">
-        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/></svg>
-    </a>
+    <div class="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
+        <a href="https://instagram.com/inamedika_beautycentersgr" target="_blank" class="bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-500 text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center">
+            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://wa.me/6287813851999" target="_blank" class="bg-green-500 text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center animate-bounce">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/></svg>
+        </a>
+    </div>
 
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // 1. Reveal Animation
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Start Counter Animation when stats section is visible
+                        if(entry.target.querySelector('.counter') || entry.target.querySelector('.counter-float')) {
+                            runCounters(entry.target);
+                        }
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, { threshold: 0.15 });
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // 2. Counter Animation Function
+            function runCounters(parent) {
+                const counters = parent.querySelectorAll('.counter, .counter-float');
+                counters.forEach(counter => {
+                    const target = parseFloat(counter.getAttribute('data-target'));
+                    const isFloat = counter.classList.contains('counter-float');
+                    const duration = 2000; // 2 seconds
+                    const increment = target / (duration / 16); // 60fps
+                    let current = 0;
+
+                    const updateCounter = () => {
+                        current += increment;
+                        if (current < target) {
+                            counter.innerText = isFloat ? current.toFixed(1) : Math.ceil(current);
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    updateCounter();
+                });
+            }
+
+            // 3. Navbar background
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) navbar.classList.add('shadow-md');
+                else navbar.classList.remove('shadow-md');
+            });
+
+            // 4. Gallery Filter
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Active button styling
+                    filterBtns.forEach(b => {
+                        b.classList.remove('bg-brand-500', 'text-white', 'border-brand-500');
+                        b.classList.add('bg-white', 'text-gray-600', 'border-gray-300');
+                    });
+                    btn.classList.remove('bg-white', 'text-gray-600', 'border-gray-300');
+                    btn.classList.add('bg-brand-500', 'text-white', 'border-brand-500');
+
+                    // Filtering logic
+                    const filter = btn.getAttribute('data-filter');
+                    galleryItems.forEach(item => {
+                        if (filter === 'all' || item.classList.contains(filter)) {
+                            item.classList.remove('hide-item');
+                        } else {
+                            item.classList.add('hide-item');
+                        }
+                    });
+                });
+            });
+
+            // 5. Basic Language Switcher (ID / EN)
+            const langIDBtn = document.getElementById('lang-id');
+            const langENBtn = document.getElementById('lang-en');
+            const langElements = document.querySelectorAll('.lang-text');
+
+            let currentLang = 'id';
+
+            langENBtn.addEventListener('click', () => {
+                if(currentLang === 'en') return;
+                langENBtn.classList.replace('text-gray-400', 'text-brand-900');
+                langENBtn.classList.add('font-bold');
+                langIDBtn.classList.replace('text-brand-900', 'text-gray-400');
+                langIDBtn.classList.remove('font-bold');
+                
+                langElements.forEach(el => {
+                    // Save original ID text
+                    if(!el.getAttribute('data-id')) el.setAttribute('data-id', el.innerText);
+                    el.innerText = el.getAttribute('data-en');
+                });
+                currentLang = 'en';
+            });
+
+            langIDBtn.addEventListener('click', () => {
+                if(currentLang === 'id') return;
+                langIDBtn.classList.replace('text-gray-400', 'text-brand-900');
+                langIDBtn.classList.add('font-bold');
+                langENBtn.classList.replace('text-brand-900', 'text-gray-400');
+                langENBtn.classList.remove('font-bold');
+
+                langElements.forEach(el => {
+                    el.innerText = el.getAttribute('data-id');
+                });
+                currentLang = 'id';
+            });
+        });
+
+        // 6. Select Service from Card
+        function selectService(serviceName) {
+            const selectElement = document.getElementById('waService');
+            selectElement.value = serviceName;
+            document.getElementById('reservasi').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 7. Send WA Function
+        function sendWA() {
+            const name = document.getElementById('waName').value;
+            const service = document.getElementById('waService').value;
+            const date = document.getElementById('waDate').value;
+            const time = document.getElementById('waTime').value;
+
+            if(!name || !service || !date) {
+                alert("Mohon lengkapi Nama, Layanan, dan Tanggal terlebih dahulu.");
+                return;
+            }
+
+            const message = `Halo Admin Ina Medika Beauty Center, saya ingin melakukan reservasi.%0A%0ANama: ${name}%0ALayanan: ${service}%0ATanggal: ${date}%0AWaktu: ${time || 'Belum ditentukan'}%0A%0AMohon konfirmasi jadwalnya ya. Terima kasih.`;
+            const waNumber = "6287813851999";
+            window.open(`https://wa.me/${waNumber}?text=${message}`, "_blank");
+        }
+    </script>
 </body>
 </html>
